@@ -33,7 +33,7 @@ console.log(formSearch)
             const data = await searchTickets();
             console.log(data);
             if (data.status === "success") {
-                 navigate("/TicketStatus", { state: formSearch });
+                 navigate("/ticketstatus", { state: formSearch });
             } else {
                 handleShowPopup(data.message, "warning");
             }

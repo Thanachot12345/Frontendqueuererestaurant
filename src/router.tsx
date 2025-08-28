@@ -11,11 +11,13 @@ export default function AppRoutes() {
 
         <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
-            <Route path="/Home" element={<Home />} />
-            <Route path="/Reserve" element={<Reserve />} />
-            <Route path="/TicketStatus" element={<TicketStatus />} />
-            <Route path="/ConfirmAttendance" element={<ConfirmAttendance />} />
-            <Route path="/SearchTickets" element={<SearchTickets />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/reserve" element={<Reserve />} />
+            <Route path="/ticketStatus" element={<TicketStatus />} />
+            <Route path="/confirmattendance" element={<ConfirmAttendance />} />
+            <Route path="/searchtickets" element={<SearchTickets />} />
+            <Route path="*" element={<Navigate to="/home" replace />} />
+
         </Routes>
     );
 }

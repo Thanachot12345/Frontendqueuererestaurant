@@ -71,10 +71,10 @@ const Home: React.FC = () => {
               <span className="text-right font-semibold">#{queue + 1}</span>
             </div>
 
-            <Button onClick={() => navigate("/Reserve")}>จองคิวล่วงหน้า</Button>
+            <Button onClick={() => navigate("/reserve")}>จองคิวล่วงหน้า</Button>
 
             <button
-              onClick={() => navigate("/TicketStatus",{ state: { id: 0 }})}
+              onClick={() => navigate("/ticketstatus",{ state: { id: 0 }})}
               className="border border-gray-300 rounded py-2 hover:bg-gray-100"
             >
               ดูสถานะการจอง
