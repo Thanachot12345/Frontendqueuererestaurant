@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import BackButton from "../assets/BackButton";
 import Swal, { type SweetAlertIcon } from "sweetalert2";
 import { useLocation } from "react-router-dom";
-import { searchTickets, type FromSearchTicket } from "../service/SearchTicketsService";
+import { searchTickets, searchTicketsID, type FromSearchTicket } from "../service/SearchTicketsService";
 import { confirmAttendance } from "../service/ConfirmAttendanceService";
 
 const TicketStatus: React.FC = () => {
@@ -10,7 +10,7 @@ const TicketStatus: React.FC = () => {
   const formSearch = location.state as FromSearchTicket;
   const [tickets, setTickets] = useState<any[]>([]);
 
-  const handleShowPopup = async (message: string, icon: SweetAlertIcon = "info", ticketid: string) => {
+  const handleShowPopup = async (message: string, icon: SweetAlertIcon = "info", ticketid: number) => {
     Swal.fire({
       title: "แจ้งเตือน",
       text: message,
@@ -41,7 +41,7 @@ const TicketStatus: React.FC = () => {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const data = await searchTickets(formSearch);
+        const data = await searchTicketsID(formSearch);
         if (data.status === "success") {
           setTickets(data.ticket);
         } else {

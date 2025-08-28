@@ -10,12 +10,13 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const data = await searchTickets({all: true});
-        if (data.status === "success") {
-          setQueue(data.ticket.length);
-        } else {
-          console.error("Error fetching tickets:", data.message);
-        }
+        const data = await searchTickets();
+        console.log(data);
+        // if (data) {
+        //   setQueue(data.data.length);
+        // } else {
+        //   console.error("Error fetching tickets:", data.message);
+        // }
       } catch (error) {
         console.error("Error fetching tickets:", error);
       }
@@ -73,7 +74,7 @@ const Home: React.FC = () => {
             <Button onClick={() => navigate("/Reserve")}>จองคิวล่วงหน้า</Button>
 
             <button
-              onClick={() => navigate("/SearchTickets")}
+              onClick={() => navigate("/TicketStatus",{ state: { id: 0 }})}
               className="border border-gray-300 rounded py-2 hover:bg-gray-100"
             >
               ดูสถานะการจอง

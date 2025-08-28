@@ -1,13 +1,13 @@
 import { config } from "../config/config";
 
 interface FromConfirmAttendance {
-    id: string;
+    id: number;
     confirmAttendance: boolean;
 }
 
 export const confirmAttendance = async (formConfirm: FromConfirmAttendance) => {
     try {
-        const response = await fetch(`${config.API_URL}/api/queue/createticketConfirmAttendance`, {
+        const response = await fetch(`${config.API_URL}/api/queue/ConfirmAttendance`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formConfirm),
