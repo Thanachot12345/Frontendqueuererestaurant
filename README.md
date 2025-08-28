@@ -35,7 +35,7 @@
 
 ## 🧭 Flow ของระบบ 
 
-![System Flow](./public/image/frontend-peer.png)
+![System Flow](./public/image/frontend-peer.jpg)
 
 ---
 
