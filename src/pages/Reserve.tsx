@@ -41,9 +41,9 @@ const Reserve: React.FC = () => {
         try {
             const data = await createTicket(formTicket);
             if (data.success) {
-                const isConfirmed = await handleShowPopup("จองคิวเรียบร้อยแล้ว 🎉", data.status.toLowerCase());
+                const isConfirmed = await handleShowPopup("จองคิวเรียบร้อยแล้ว 🎉", data.success);
                 if (isConfirmed) {
-                    navigate("/TicketStatus", { state: { id: data.data.id, all: false } });
+                    navigate("/TicketStatus", { state: { id: data.data.id} });
                 }
             } else {
                 handleShowPopup(data.message, "warning");

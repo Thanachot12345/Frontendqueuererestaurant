@@ -12,11 +12,11 @@ const Home: React.FC = () => {
       try {
         const data = await searchTickets();
         console.log(data);
-        // if (data) {
-        //   setQueue(data.data.length);
-        // } else {
-        //   console.error("Error fetching tickets:", data.message);
-        // }
+        if (data) {
+          setQueue(data.data.length);
+        } else {
+          console.error("Error fetching tickets:", data.message);
+        }
       } catch (error) {
         console.error("Error fetching tickets:", error);
       }

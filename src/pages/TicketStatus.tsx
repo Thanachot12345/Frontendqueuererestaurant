@@ -23,17 +23,17 @@ const TicketStatus: React.FC = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         confirmAttendance({ id: ticketid, confirmAttendance: false })
-          .then((data) => {
-            if (data.status === "Success") {
-              Swal.fire("สำเร็จ", "ยืนยันการเข้าร่วมเรียบร้อยแล้ว", "success");
-            } else {
-              Swal.fire("ผิดพลาด", data.message, "error");
-            }
-          })
-          .catch((error) => {
-            console.error("Error confirming attendance:", error);
-            Swal.fire("ผิดพลาด", "ไม่สามารถยกเลิกการเข้าร่วมได้", "error");
-          });
+          // .then((data) => {
+          //   if (data.status === "Success") {
+          //     Swal.fire("สำเร็จ", "ยืนยันการเข้าร่วมเรียบร้อยแล้ว", "success");
+          //   } else {
+          //     Swal.fire("ผิดพลาด", data.message, "error");
+          //   }
+          // })
+          // .catch((error) => {
+          //   console.error("Error confirming attendance:", error);
+          //   Swal.fire("ผิดพลาด", "ไม่สามารถยกเลิกการเข้าร่วมได้", "error");
+          // });
       }
     });
   };
@@ -42,8 +42,9 @@ const TicketStatus: React.FC = () => {
     const fetchTickets = async () => {
       try {
         const data = await searchTicketsID(formSearch);
-        if (data.status === "success") {
-          setTickets(data.ticket);
+        console.log(data)
+        if (data.success) {
+          setTickets(data.data);
         } else {
           console.error("Error fetching tickets:", data.message);
         }
@@ -77,7 +78,7 @@ const TicketStatus: React.FC = () => {
               {/* Queue Number */}
               <div className="mb-6 sm:mb-8 rounded-lg bg-gray-100 text-center p-8">
                 <div className="text-4xl font-extrabold tracking-widest text-gray-900">
-                  #{ticket.queue} {/* <-- แสดง Queue แทน ID */}
+                  #{ticket.ticketCode} {/* <-- แสดง Queue แทน ID */}
                 </div>
                 <div className="mt-2 text-sm text-gray-500">หมายเลขคิวของคุณ</div>
               </div>
@@ -86,38 +87,22 @@ const TicketStatus: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
                 <div className="space-y-1">
                   <div className="text-gray-500">ชื่อ:</div>
-                  <div className="font-medium">{ticket.name}</div>
-                </div>
-                <div className="space-y-1">
-                  <div className="text-gray-500">จำนวน:</div>
-                  <div className="font-medium">{ticket.people}</div>
-                </div>
-                <div className="space-y-1">
-                  <div className="text-gray-500">จองเมื่อ:</div>
-                  <div className="font-medium">{new Date(ticket.time).toLocaleTimeString()}</div>
-                </div>
-                <div className="space-y-1">
-                  <div className="text-gray-500">โทรศัพท์:</div>
-                  <div className="font-medium">{ticket.phone}</div>
+                  <div className="font-medium">{ticket.customerName}</div>
                 </div>
                 <div className="space-y-1">
                   <div className="text-gray-500">จำนวนคิวที่รอ:</div>
-                  <div className="font-medium">{ticket.queueDifference} คน</div>
+                  <div className="font-medium">{ticket.waitingAhead} คน</div>
                 </div>
                 <div className="space-y-1">
                   <div className="text-gray-500">สถานะการจองคิว:</div>
-                  <div className="font-medium">{ticket.status} </div>
-                </div>
-                <div className="space-y-1 sm:col-span-3">
-                  <div className="text-gray-500">หมายเหตุ:</div>
-                  <div className="font-medium">{ticket.note}</div>
+                  <div className="font-medium">{ticket.queueStatus} </div>
                 </div>
               </div>
 
               {/* Confirm Button */}
               <div className="mt-6">
                 <button
-                  onClick={() => handleShowPopup(`คุณต้องการยกเลิกคิว #${ticket.queue}`, "warning", ticket.id)}
+                  onClick={() => handleShowPopup(`คุณต้องการยกเลิกคิว #${ticket.ticketCode}`, "warning", ticket.id)}
                   className="w-full rounded-md border border-gray-300 bg-white py-2.5 text-sm font-medium hover:bg-gray-50 active:bg-gray-100"
                 >
                   ยกเลิกการจองคิว

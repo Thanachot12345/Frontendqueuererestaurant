@@ -40,7 +40,7 @@ export const searchTickets = async () => {
         // parse JSON
         const data = await response.json();
         console.log("Fetched data:", data);
-        // return data;
+        return data;
 
     } catch (error) {
         console.error("Error searching tickets:", error);
@@ -50,9 +50,9 @@ export const searchTickets = async () => {
 
 
 export const searchTicketsID = async (searchTicketsID: FromSearchTicket) => {
-    console.log("Fetching tickets...", `${config.API_URL}/api/queue/${3}/detail`);
+    console.log("Fetching tickets...", `${config.API_URL}/api/queue/${searchTicketsID.id}/detail`);
     try {
-        const response = await fetch(`${config.API_URL}/api/queue/detail`, {
+        const response = await fetch(`${config.API_URL}/api/queue/${searchTicketsID.id}/detail`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

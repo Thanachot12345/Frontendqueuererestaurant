@@ -30,7 +30,7 @@ console.log(formSearch)
             return;
         }
         try {
-            const data = await searchTickets(formSearch);
+            const data = await searchTickets();
             console.log(data);
             if (data.status === "success") {
                  navigate("/TicketStatus", { state: formSearch });

@@ -11,9 +11,9 @@ const ConfirmAttendance: React.FC = () => {
     useEffect(() => {
         const fetchTickets = async () => {
             try {
-                const data = await searchTickets({ all: true });
-                if (data.status === "success") {
-                    settickets(data.ticket);
+                const data = await searchTickets();
+                if (data.success) {
+                    settickets(data.data);
                 } else {
                     console.error("Error fetching tickets:", data.message);
                 }
@@ -25,7 +25,7 @@ const ConfirmAttendance: React.FC = () => {
         fetchTickets();
     }, []);
 
-    const handleShowPopup = async (message: string, icon: SweetAlertIcon = "info", ticketid: string, isConfirmAttendance: boolean) => {
+    const handleShowPopup = async (message: string, icon: SweetAlertIcon = "info", ticketid: number, isConfirmAttendance: boolean) => {
         Swal.fire({
             title: "แจ้งเตือน",
             text: message,
@@ -38,17 +38,17 @@ const ConfirmAttendance: React.FC = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 confirmAttendance({ id: ticketid, confirmAttendance: isConfirmAttendance })
-                    .then((data) => {
-                        if (data.status === "Success") {
-                            Swal.fire("สำเร็จ", "ยืนยันการเข้าร่วมเรียบร้อยแล้ว", "success");
-                        } else {
-                            Swal.fire("ผิดพลาด", data.message, "error");
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("Error confirming attendance:", error);
-                        Swal.fire("ผิดพลาด", "ไม่สามารถยกเลิกการเข้าร่วมได้", "error");
-                    });
+                    // .then((data) => {
+                    //     if (data.status === "Success") {
+                    //         Swal.fire("สำเร็จ", "ยืนยันการเข้าร่วมเรียบร้อยแล้ว", "success");
+                    //     } else {
+                    //         Swal.fire("ผิดพลาด", data.message, "error");
+                    //     }
+                    // })
+                    // .catch((error) => {
+                    //     console.error("Error confirming attendance:", error);
+                    //     Swal.fire("ผิดพลาด", "ไม่สามารถยกเลิกการเข้าร่วมได้", "error");
+                    // });
             }
         });
     };
@@ -74,7 +74,7 @@ const ConfirmAttendance: React.FC = () => {
                             {/* Queue Number */}
                             <div className="mb-6 sm:mb-8 rounded-lg bg-gray-100 text-center p-8">
                                 <div className="text-4xl font-extrabold tracking-widest text-gray-900">
-                                    #{ticket.queue}
+                                    #{ticket.ticketCode}
                                 </div>
                                 <div className="mt-2 text-sm text-gray-500">หมายเลขคิวของคุณ</div>
                             </div>
@@ -83,38 +83,22 @@ const ConfirmAttendance: React.FC = () => {
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
                                 <div className="space-y-1">
                                     <div className="text-gray-500">ชื่อ:</div>
-                                    <div className="font-medium">{ticket.name}</div>
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="text-gray-500">จำนวน:</div>
-                                    <div className="font-medium">{ticket.people}</div>
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="text-gray-500">จองเมื่อ:</div>
-                                    <div className="font-medium">{new Date(ticket.time).toLocaleTimeString()}</div>
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="text-gray-500">โทรศัพท์:</div>
-                                    <div className="font-medium">{ticket.phone}</div>
+                                    <div className="font-medium">{ticket.customerName}</div>
                                 </div>
                                 <div className="space-y-1">
                                     <div className="text-gray-500">จำนวนคิวที่รอ:</div>
-                                    <div className="font-medium">{ticket.queueDifference} คน</div>
+                                    <div className="font-medium">{ticket.waitingAhead} คน</div>
                                 </div>
                                 <div className="space-y-1">
                                     <div className="text-gray-500">สถานะการจองคิว:</div>
-                                    <div className="font-medium">{ticket.status}</div>
-                                </div>
-                                <div className="space-y-1 sm:col-span-3">
-                                    <div className="text-gray-500">หมายเหตุ:</div>
-                                    <div className="font-medium">{ticket.note}</div>
+                                    <div className="font-medium">{ticket.queueStatus}</div>
                                 </div>
                             </div>
 
                             {/* Buttons */}
                             <div className="mt-6 space-y-2">
                                 <button
-                                    onClick={() => handleShowPopup(`คุณต้องการยืนยันคิว #${ticket.queue}`, "warning", ticket.id, true)}
+                                    onClick={() => handleShowPopup(`คุณต้องการยืนยันคิว #${ticket.ticketCode}`, "warning", ticket.id, true)}
                                     className="w-full rounded-md border border-gray-300 bg-black text-white py-2.5 text-sm font-medium hover:text-black active:text-black hover:bg-gray-50 active:bg-gray-100"
                                 >
                                     ยืนยันคิว
