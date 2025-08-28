@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import BackButton from "../assets/BackButton";
 import Swal, { type SweetAlertIcon } from "sweetalert2";
 import { useLocation } from "react-router-dom";
-import { searchTickets, searchTicketsID, type FromSearchTicket } from "../service/SearchTicketsService";
+import {searchTicketsID, type FromSearchTicket } from "../service/SearchTicketsService";
 import { confirmAttendance } from "../service/ConfirmAttendanceService";
 
 const TicketStatus: React.FC = () => {
