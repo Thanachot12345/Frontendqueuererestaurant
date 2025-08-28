@@ -35,7 +35,10 @@
 
 ## 🧭 Flow ของระบบ 
 
-![System Flow](./public/image/frontend-peer.jpg)
+<p align="center">
+  <img src="./public/image/frontend-peer.jpg" alt="System Flow" width="500"/>
+</p>
+
 
 ---
 
