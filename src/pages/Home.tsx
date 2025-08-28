@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../assets/Button";
-import { searchTickets, } from "../service/SearchTicketsService";
+// import { searchTickets, } from "../service/SearchTicketsService";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const [queue, setQueue] = useState(Number) 
+  const [queue, s] = useState(Number) 
 
   useEffect(() => {
     const fetchTickets = async () => {
