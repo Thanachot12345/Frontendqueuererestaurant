@@ -10,13 +10,13 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const data = await searchTickets();
-        console.log(data);
-        if (data) {
-          setQueue(data.data.length);
-        } else {
-          console.error("Error fetching tickets:", data.message);
-        }
+        // const data = await searchTickets();
+        // console.log(data);
+        // if (data) {
+        //   setQueue(data.data.length);
+        // } else {
+        //   console.error("Error fetching tickets:", data.message);
+        // }
       } catch (error) {
         console.error("Error fetching tickets:", error);
       }

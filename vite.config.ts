@@ -8,8 +8,5 @@ export default defineConfig({
   base: '/',           // เน้นย้ำ path สากลสำหรับ asset
   server: {
     open: "/home",
-    // port: 3000,    // เปลี่ยน port
-    // host: true,    // ให้เข้าจากเครือข่ายได้
-    // strictPort: false, // ถ้า port ถูกใช้อยู่ จะเลือก port ใหม่อัตโนมัติ
   }
 })
