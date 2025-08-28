@@ -5,7 +5,7 @@ import Button from "../assets/Button";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const [queue, s] = useState(Number) 
+  const [queue, ] = useState(Number) 
 
   useEffect(() => {
     const fetchTickets = async () => {
