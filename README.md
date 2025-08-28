@@ -51,7 +51,7 @@ flowchart TD
     User -->|Request Website| Amplify -->|ส่ง index.html + JS/CSS| App
     App -->|Render UI| User
 
-    ---
+---
 
 ⚙️ การทำงานของระบบ
 
@@ -75,7 +75,7 @@ flowchart TD
 
 5.ทุกการเปลี่ยนหน้าเกิดที่ฝั่ง Client (SPA) → ไม่ reload ทั้งหน้า
 
- ---
+---
 
 🚀 การ Deploy (Amplify Hosting)
 
