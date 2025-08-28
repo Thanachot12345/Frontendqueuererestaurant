@@ -33,27 +33,9 @@
 
 ---
 
-## 🧭 Flow ของระบบ (Mermaid)
+## 🧭 Flow ของระบบ 
 
-```mermaid
-flowchart TD
-
-    subgraph User["👤 ผู้ใช้งาน (Browser)"]
-    end
-
-    subgraph Amplify["🌐 AWS Amplify Hosting"]
-        A1["Build Pipeline<br/>(npm ci, npm run build)"]
-        A2["Static Hosting<br/>(index.html + assets)"]
-    end
-
-    subgraph App["⚛️ React SPA"]
-        R1["React Router<br/>จัดการเส้นทาง /home, /reserve, /ticketstatus"]
-        R2["UI Components<br/>TailwindCSS"]
-    end
-
-    User -->|Request Website| Amplify -->|ส่ง index.html + JS/CSS| App
-    App -->|Render UI| User
-```
+![System Flow](./public/image/frontend-peer.png)
 
 ---
 
