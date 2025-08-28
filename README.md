@@ -52,19 +52,29 @@ flowchart TD
     App -->|Render UI| User
 
 ---
+## การทำงานของระบบ
 
-## ⚙️ การทำงานของระบบ
+### 1. ผู้ใช้นำลิงก์
+- ผู้ใช้เข้าลิงก์ Amplify หรือ Domain ของระบบ  
 
-1. **ผู้ใช้เข้าลิงก์ Amplify หรือ Domain ของระบบ**  
-2. **Amplify Hosting** ส่ง `index.html` + bundle (JS/CSS) ให้  
-3. **React** mount `<div id="root">` และ render UI  
-4. **React Router** ควบคุมเส้นทาง  
-   - `/home` → หน้าแรก  
-   - `/reserve` → จองคิว  
-   - `/ticketstatus` → สถานะคิว  
-   - `/confirmattendance` → ยืนยันการมา  
-   - `/searchtickets` → ค้นหาตั๋ว  
-5. **ทุกการเปลี่ยนหน้าเกิดที่ฝั่ง Client (SPA)** → ไม่ reload ทั้งหน้า  
+### 2. Amplify Hosting
+- ส่ง `index.html` + bundle (JS/CSS) ให้  
+
+### 3. React
+- Mount `<div id="root">` และ render UI  
+
+### 4. React Router
+- ควบคุมเส้นทาง  
+  - `/home` → หน้าแรก  
+  - `/reserve` → จองคิว  
+  - `/ticketstatus` → สถานะคิว  
+  - `/confirmattendance` → ยืนยันการมา  
+  - `/searchtickets` → ค้นหาตั๋ว  
+
+### 5. การทำงานแบบ SPA
+- ทุกการเปลี่ยนหน้าเกิดที่ฝั่ง Client (SPA) → ไม่ reload ทั้งหน้า  
+
+
 
 ---
 
