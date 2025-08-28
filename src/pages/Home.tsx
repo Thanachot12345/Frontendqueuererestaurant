@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../assets/Button";
-// import { searchTickets, } from "../service/SearchTicketsService";
+import { searchTickets, } from "../service/SearchTicketsService";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const [queue, ] = useState(Number) 
+  const [queue, setQueue] = useState(Number) 
 
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        // const data = await searchTickets();
-        // console.log(data);
-        // if (data) {
-        //   setQueue(data.data.length);
-        // } else {
-        //   console.error("Error fetching tickets:", data.message);
-        // }
+        const data = await searchTickets();
+        console.log(data);
+        if (data) {
+          setQueue(data.data.length);
+        } else {
+          console.error("Error fetching tickets:", data.message);
+        }
       } catch (error) {
         console.error("Error fetching tickets:", error);
       }
