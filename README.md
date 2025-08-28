@@ -1,69 +1,75 @@
-# React + TypeScript + Vite
+# 🍽️ Queue Restaurant Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ระบบ **Queue Management / Reservation System** สำหรับร้านอาหาร  
+พัฒนาด้วย **React + Vite + Tailwind CSS** และ Deploy บน **AWS Amplify Hosting**
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📂 โครงสร้างโปรเจกต์
 
-## Expanding the ESLint configuration
+```plaintext
+├── public/                 # ไฟล์ static เช่น icon, favicon
+├── src/
+│   ├── components/          # UI components (ปุ่ม, card, layout ฯลฯ)
+│   ├── pages/               # หน้าเว็บหลัก เช่น Home, Reserve, TicketStatus
+│   ├── router/              # กำหนดเส้นทาง (React Router)
+│   ├── App.tsx              # Root component
+│   └── main.tsx             # Entry point ของ React
+├── vite.config.ts           # การตั้งค่า Vite
+├── tailwind.config.js       # การตั้งค่า Tailwind
+├── package.json
+└── README.md
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+flowchart TD
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+    subgraph User["👤 ผู้ใช้งาน (Browser)"]
+    end
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+    subgraph Amplify["🌐 AWS Amplify Hosting"]
+        A1["Build Pipeline<br/>(npm ci, npm run build)"]
+        A2["Static Hosting<br/>(index.html + assets)"]
+    end
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+    subgraph App["⚛️ React SPA"]
+        R1["React Router<br/>จัดการเส้นทาง /home, /reserve, /ticketstatus"]
+        R2["UI Components<br/>TailwindCSS"]
+    end
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+    User -->|Request Website| Amplify -->|ส่ง index.html + JS/CSS| App
+    App -->|Render UI| User
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+⚙️ การทำงานของระบบ
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1.ผู้ใช้เข้าลิงก์ Amplify หรือ Domain ของระบบ
+
+2.Amplify Hosting ส่ง index.html + bundle (JS/CSS) ให้
+
+3.React mount <div id="root"> และ render UI
+
+4.React Router ควบคุมเส้นทาง
+
+  /home → หน้าแรก
+
+  /reserve → จองคิว
+
+  /ticketstatus → สถานะคิว
+
+  /confirmattendance → ยืนยันการมา
+
+  /searchtickets → ค้นหาตั๋ว
+
+5.ทุกการเปลี่ยนหน้าเกิดที่ฝั่ง Client (SPA) → ไม่ reload ทั้งหน้า
+
+🚀 การ Deploy (Amplify Hosting)
+
+1. Push โค้ดขึ้น GitHub
+git add .
+git commit -m "update"
+git push origin main
+
+2. Amplify Hosting จะ trigger pipeline:
+ติดตั้ง dependency (npm ci)
+build โปรเจกต์ (npm run build)
+deploy ไฟล์ dist/
+
+3. ผู้ใช้เปิดเว็บ → ได้หน้าเวอร์ชันล่าสุดโดยอัตโนมัติ
