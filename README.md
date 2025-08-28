@@ -73,3 +73,67 @@ build โปรเจกต์ (npm run build)
 deploy ไฟล์ dist/
 
 3. ผู้ใช้เปิดเว็บ → ได้หน้าเวอร์ชันล่าสุดโดยอัตโนมัติ
+
+
+
+flowchart LR
+  %% ===== Groups / Subgraphs =====
+  subgraph CLIENT[Client]
+    C1[Client\nBrowser]
+    C2[Client\nBrowser]
+  end
+
+  subgraph AWS[aws  Amazon Cloud]
+    direction LR
+
+    subgraph REGION[Region]
+      direction LR
+
+      subgraph VPC[VPC]
+        direction LR
+
+        %% ---------- Frontend ----------
+        subgraph FE[Frontend]
+          direction TB
+          R53[Amazon Route 53]
+          CF[Amazon CloudFront]
+          S3[(Amazon S3\nStatic Website)]
+        end
+
+        %% ---------- Backend ----------
+        subgraph BE[Backend]
+          direction TB
+          ALB[Elastic Load Balancer\n(ALB)]
+          ECS[(Amazon ECS Cluster)]
+          TASK[ECS Task\nAPI: GET/POST/DELETE]
+        end
+
+      end
+
+      %% Outside VPC but in Region
+      ECR[(Amazon ECR\nContainer Images)]
+      CW[(Amazon CloudWatch\nLogs & Metrics)]
+
+    end
+  end
+
+  MDB[(MongoDB\n(External / Atlas))]
+
+  %% ===== Connections =====
+  C1 -->|HTTP/HTTPS| R53
+  C2 -->|HTTP/HTTPS| R53
+
+  R53 -->|DNS (CNAME/A)| CF
+  CF -->|Static Content| S3
+  CF -->|API Requests| ALB
+
+  ALB -->|Forward| ECS
+  ECS --> TASK
+
+  ECR -->|Pull Images| ECS
+  ECS -->|Send Logs| CW
+  TASK -->|TLS| MDB
+
+  %% ===== Notes / Decorations =====
+  classDef box fill:#eef6ff,stroke:#5b9bd5,stroke-width:1px,color:#111
+  class FE,BE,VPC,REGION,AWS,CLIENT box
