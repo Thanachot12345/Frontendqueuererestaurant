@@ -36,7 +36,7 @@
 ## 🧭 Flow ของระบบ 
 
 <p align="center">
-  <img src="./public/image/frontend-peer.jpg" alt="System Flow" width="500"/>
+  <img src="./public/image/artcitech.png" alt="System Flow" width="500"/>
 </p>
 
 ---
