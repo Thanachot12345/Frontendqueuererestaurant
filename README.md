@@ -107,5 +107,11 @@ git push origin main
   <img src="./public/image/load-test.png" alt="System Flow" width="500"/>
 </p>
 
+## ภาพการทำload test
+
+<p align="center">
+  <img src="./public/image/load-balance.png" alt="System Flow" width="500"/>
+</p>
+
 
 
