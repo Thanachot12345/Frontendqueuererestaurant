@@ -79,23 +79,23 @@ git commit -m "update"
 git push origin main
 ```
 
-2. Amplify Hosting จะ trigger pipeline อัตโนมัติ:
+2. GitHub Actions workflow จะ trigger อัตโนมัติ
 
 * ติดตั้ง dependency: `npm ci`
 * build โปรเจกต์: `npm run build`
 * deploy ไฟล์ `dist/` ไปที่ Static Hosting
 
-3. ผู้ใช้เปิดเว็บ → จะได้หน้าเวอร์ชันล่าสุดโดยอัตโนมัติ
+3. ผู้ใช้เปิดเว็บผ่าน S3 Website Endpoint
 
 ---
 
-## การทำload balance
+## ภาพการทำload balance
 
 <p align="center">
   <img src="./public/image/load-balance.png" alt="System Flow" width="500"/>
 </p>
 
-## การทำload tses
+## ภาพการทำload test
 
 <p align="center">
   <img src="./public/image/load-test.png" alt="System Flow" width="500"/>
