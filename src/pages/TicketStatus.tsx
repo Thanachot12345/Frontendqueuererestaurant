@@ -19,7 +19,7 @@ const TicketStatus: React.FC = () => {
       confirmButtonText: "ยืนยัน",
       cancelButtonText: "ยกเลิก",
       confirmButtonColor: "green",
-      cancelButtonColor: "red",
+      cancelButtonColor: "burple",
     }).then((result) => {
       if (result.isConfirmed) {
         confirmAttendance({ id: ticketid, confirmAttendance: false })
