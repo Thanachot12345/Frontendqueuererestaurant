@@ -9,9 +9,9 @@ import Swal, { type SweetAlertIcon } from "sweetalert2";
 const Reserve: React.FC = () => {
     const navigate = useNavigate();
     const [formTicket, setFormTicket] = useState<FormTicket>({
-        name: "",
+        customerName: "",
         phone: "",
-        people: 0,
+        partySize: 0,
         note: "",
     });
     const peopleOptions = [1, 2, 3, 4, 5, 6, 7];
@@ -35,15 +35,15 @@ const Reserve: React.FC = () => {
         });
     };
     const handleSubmit = async () => {
-        if (!formTicket.name || !formTicket.phone || !formTicket.people ||  formTicket.phone.length > 10 ||  formTicket.phone.length < 10) {
+        if (!formTicket.customerName || !formTicket.phone || !formTicket.partySize ||  formTicket.phone.length > 10 ||  formTicket.phone.length < 10) {
             handleShowPopup("กรุณากรอกชื่อ, เบอร์โทร และจำนวนคนให้ครบ", "warning"); return;
         }
         try {
             const data = await createTicket(formTicket);
             if (data.success) {
-                const isConfirmed = await handleShowPopup("จองคิวเรียบร้อยแล้ว 🎉", data.success);
+                const isConfirmed = await handleShowPopup("จองคิวเรียบร้อยแล้ว 🎉", "success");
                 if (isConfirmed) {
-                    navigate("/ticketstatus", { state: { id: data.data.id} });
+                    navigate("/home", { state: { id: data.data.id} });
                 }
             } else {
                 handleShowPopup(data.message, "warning");
@@ -61,9 +61,9 @@ const Reserve: React.FC = () => {
 
                     <input
                         type="text"
-                        name="name"
+                        name="customerName"
                         placeholder="ชื่อ"
-                        value={formTicket.name}
+                        value={formTicket.customerName}
                         onChange={handleChange}
                         className="w-full mb-4 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
@@ -78,8 +78,8 @@ const Reserve: React.FC = () => {
                     />
 
                     <select
-                        name="people"
-                        value={formTicket.people}
+                        name="partySize"
+                        value={formTicket.partySize}
                         onChange={handleChange}
                         className="w-full mb-4 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     >

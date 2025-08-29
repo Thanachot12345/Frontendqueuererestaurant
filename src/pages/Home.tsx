@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../assets/Button";
-import { searchTickets, } from "../service/SearchTicketsService";
+import { searchTickets, type FromSearchTicket, } from "../service/SearchTicketsService";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const [queue, setQueue] = useState(Number) 
+  const [queue, setQueue] = useState(Number)
+  const location = useLocation();
+  const formSearch = location.state as FromSearchTicket;
+  console.log(formSearch)
 
   useEffect(() => {
     const fetchTickets = async () => {
@@ -74,7 +77,7 @@ const Home: React.FC = () => {
             <Button onClick={() => navigate("/reserve")}>จองคิวล่วงหน้า</Button>
 
             <button
-              onClick={() => navigate("/ticketstatus",{ state: { id: 0 }})}
+              onClick={() => navigate("/ticketstatus", { state: { id: formSearch.id } })}
               className="border border-gray-300 rounded py-2 hover:bg-gray-100"
             >
               ดูสถานะการจอง
