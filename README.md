@@ -12,6 +12,7 @@
 
 ระบบ Queue Management / Reservation System สำหรับร้านอาหาร
 พัฒนาด้วย React + Vite + Tailwind CSS และ Deploy บน Amazon S3 Static Website Hosting (Auto Deploy ผ่าน GitHub Actions)
+
 ---
 
 ## 📂 โครงสร้างโปรเจกต์
@@ -69,7 +70,7 @@ Mount <div id="root"> และ render UI
 
 ---
 
-## 🚀 การ Deploy (AWS Amplify Hosting)
+## 🚀 การ Deploy 
 
 1. Push โค้ดขึ้น GitHub
 
