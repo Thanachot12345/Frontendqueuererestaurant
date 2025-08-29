@@ -44,6 +44,7 @@ const TicketStatus: React.FC = () => {
         const data = await searchTicketsID(formSearch);
         console.log(data)
         if (data.success) {
+          console.log(data.data)
           setTickets(data.data);
         } else {
           console.error("Error fetching tickets:", data.message);
