@@ -77,7 +77,7 @@ const Home: React.FC = () => {
             <Button onClick={() => navigate("/reserve")}>จองคิวล่วงหน้า</Button>
 
             <button
-              onClick={() => navigate("/ticketstatus", { state: { id: 0 } })}
+              onClick={() => navigate("/ticketstatus", { state: { id: formSearch.id } })}
               className="border border-gray-300 rounded py-2 hover:bg-gray-100"
             >
               ดูสถานะการจอง
