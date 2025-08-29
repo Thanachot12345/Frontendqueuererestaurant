@@ -45,7 +45,7 @@ const Home: React.FC = () => {
           <div className="rounded-xl border border-gray-300 bg-white shadow-sm p-6 text-center flex flex-col justify-center">
             <div className="text-4xl mb-2">👥</div>
             <h1 className="text-3xl font-bold">{queue}</h1>
-            <p className="text-gray-500">คิวที่รอ hhhhhhhhhh</p>
+            <p className="text-gray-500">คิวที่รอ</p>
           </div>
 
           {/* กล่องข้อมูลร้าน */}
