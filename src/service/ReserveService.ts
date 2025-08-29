@@ -1,6 +1,6 @@
 import { config } from "../config/config";
 export interface FormTicket {
-  name: string;
+  customerName: string;
   phone: string;
   people: number;
   note: string;
