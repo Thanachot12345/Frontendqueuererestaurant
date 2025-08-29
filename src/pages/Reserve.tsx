@@ -43,7 +43,7 @@ const Reserve: React.FC = () => {
             if (data.success) {
                 const isConfirmed = await handleShowPopup("จองคิวเรียบร้อยแล้ว 🎉", "success");
                 if (isConfirmed) {
-                    navigate("/ticketstatus", { state: { id: data.data.id} });
+                    navigate("/home", { state: { id: data.data.id} });
                 }
             } else {
                 handleShowPopup(data.message, "warning");
