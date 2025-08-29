@@ -89,10 +89,16 @@ git push origin main
 
 ---
 
-## ภาพการทำload balance
+## ภาพการ depolyของfrontend
 
 <p align="center">
-  <img src="./public/image/load-balance.png" alt="System Flow" width="500"/>
+  <img src="./public/image/depoly-frontend.png" alt="System Flow" width="500"/>
+</p>
+
+## ภาพการ depolyของbackend
+
+<p align="center">
+  <img src="./public/image/depoly-backend.png" alt="System Flow" width="500"/>
 </p>
 
 ## ภาพการทำload test
