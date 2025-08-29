@@ -2,7 +2,7 @@ import { config } from "../config/config";
 export interface FormTicket {
   customerName: string;
   phone: string;
-  people: number;
+  partySize: number;
   note: string;
 }
 
