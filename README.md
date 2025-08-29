@@ -83,7 +83,7 @@ git push origin main
 
 * ติดตั้ง dependency: `npm ci`
 * build โปรเจกต์: `npm run build`
-* deploy ไฟล์ `dist/` ไปที่ Static Hosting
+* sync ไฟล์ใน dist/ → ขึ้น S3 bucket (ผ่าน AWS CLI)
 
 3. ผู้ใช้เปิดเว็บผ่าน S3 Website Endpoint
 
