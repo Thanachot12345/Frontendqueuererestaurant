@@ -8,11 +8,10 @@
 
 ---
 
-# 🍽️ Queue Restaurant Frontend
+ ## 🍽️ Queue Restaurant Frontend
 
-ระบบ **Queue Management / Reservation System** สำหรับร้านอาหาร
-พัฒนาด้วย **React + Vite + Tailwind CSS** และ Deploy บน **AWS Amplify Hosting**
-
+ระบบ Queue Management / Reservation System สำหรับร้านอาหาร
+พัฒนาด้วย React + Vite + Tailwind CSS และ Deploy บน Amazon S3 Static Website Hosting (Auto Deploy ผ่าน GitHub Actions)
 ---
 
 ## 📂 โครงสร้างโปรเจกต์
@@ -43,31 +42,30 @@
 
 ## 🔧 การทำงานของระบบ
 
-### 1) ผู้ใช้นำลิงก์
+### 1.ผู้ใช้นำลิงก์
+ผู้ใช้เข้าลิงก์ S3 Website Endpoint หรือ Domain ที่ชี้มาที่ S3
 
-* ผู้ใช้เข้าลิงก์ Amplify หรือ Domain ของระบบ
+### 2.S3 Static Hosting
+S3 ส่ง index.html + bundle (JS/CSS) ให้ผู้ใช้
 
-### 2) Amplify Hosting
+### 3.React
+Mount <div id="root"> และ render UI
 
-* ส่ง `index.html` + bundle (JS/CSS) ให้
+### 4.React Router
+ควบคุมเส้นทาง
 
-### 3) React
+* /home → หน้าแรก
 
-* Mount `<div id="root">` และ render UI
+* /reserve → จองคิว
 
-### 4) React Router
+* /ticketstatus → สถานะคิว
 
-* ควบคุมเส้นทาง
+* /confirmattendance → ยืนยันการมา
 
-  * `/home` → หน้าแรก
-  * `/reserve` → จองคิว
-  * `/ticketstatus` → สถานะคิว
-  * `/confirmattendance` → ยืนยันการมา
-  * `/searchtickets` → ค้นหาตั๋ว
+* /searchtickets → ค้นหาตั๋ว
 
-### 5) การทำงานแบบ SPA
-
-* ทุกการเปลี่ยนหน้าเกิดที่ฝั่ง Client (SPA) → ไม่ reload ทั้งหน้า
+### 5.การทำงานแบบ SPA
+ทุกการเปลี่ยนหน้าเกิดที่ฝั่ง Client (SPA) → ไม่ reload ทั้งหน้า
 
 ---
 
@@ -91,6 +89,17 @@ git push origin main
 
 ---
 
+## การทำload balance
+
+<p align="center">
+  <img src="./public/image/load-balance.png" alt="System Flow" width="500"/>
+</p>
+
+## การทำload tses
+
+<p align="center">
+  <img src="./public/image/load-test.png" alt="System Flow" width="500"/>
+</p>
 
 
 
